@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 button.textContent = category.name;
                 button.addEventListener('click', function () {
                     setButtonSelected(button);
-                    fetchCategories(category.name);
+                    fetchCategories(category.id);
                 });
                 button.classList.add('category-button'); // Ajouter la classe au bouton
                 buttonContainer.appendChild(button);
@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     // Fonction pour gérer le clic sur un bouton de catégorie
-    function fetchCategories(categoryName) {
+    function fetchCategories(categoryId) {
         // Filtrer les éléments par catégorie
-        const filteredElements = works.filter(element => element.category.name === categoryName);
+        const filteredElements = works.filter(element => element.category.id === categoryId);
         // Afficher les éléments filtrés
         displayGallery(filteredElements);
     }

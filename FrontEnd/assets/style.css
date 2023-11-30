@@ -172,10 +172,10 @@ section {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
-	
+	cursor: pointer;
 }
 
-.btnSelected {
+#buttonContainer button.btnSelected {
 	background: #1D6154;
 	color: white;
 }
