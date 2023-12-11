@@ -185,6 +185,10 @@ section {
 	background: #1D6154;
 	color: white;
 }
+#buttonContainer button:hover {
+	background: #0E2F28;
+	color: white;
+}
 
 h1 {
 	display: flex;

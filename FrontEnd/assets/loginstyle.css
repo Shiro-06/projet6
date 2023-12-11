@@ -3,12 +3,49 @@
 body {
     max-height: 1024px;
     max-width: 1440px;
-	margin: auto;
-	font-family: 'Work Sans';
-	font-size: 14px;
+    margin: auto;
 }
+
 main {
     display: flex;
     justify-content: center;
+}
+
+h2 > form {
+    margin-bottom: 40px;
+}
+
+.loginSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginSection>form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    width: 380px;
+    height: 50px;
+    border: none;
+}
+
+form {
+    color: #3D3D3D;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.passwordLink {
+    text-align: center;
+    text-decoration: underline;
+}
+.passwordLink:hover {
+    text-decoration: none;
 }
 

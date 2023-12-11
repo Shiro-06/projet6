@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Appeler fetchGallery au chargement de la page
+    // Appeler fetchGallery au chargement de la page !!A METTRE DANS UNE FONCTION SANS EVENEMENT!!
     fetchGallery('http://localhost:5678/api/works');
 
     // Ajouter le bouton "Tous" en premier
@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
     tousButton.classList.add('category-button'); // Ajouter la classe au bouton
     buttonContainer.appendChild(tousButton);
 
-    // Créer les boutons avec des noms spécifiques
+    // Créer les boutons avec des noms spécifiques !!MODIFIER POUR FAIRE UN SEUL APPEL FETCH DANS UNE FONCTION AVEC VERIFICATION DE LA REQUETE!! RAJOUTER CONDITION POUR AFFICHER OU NON
+    // LES BOUTONS SI ON EST LOG OU PAS
     fetch('http://localhost:5678/api/categories')
         .then(response => response.json())
         .then(categories => {
@@ -80,9 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchGallery(apiUrl) {
         fetch(apiUrl)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP! Statut: ${response.status}`);
-                }
                 return response.json();
             })
             .then(data => {
