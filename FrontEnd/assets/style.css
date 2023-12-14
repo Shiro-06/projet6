@@ -136,11 +136,22 @@ table {
 }
 
 /** end reset css**/
-body {
+.mainContainer {
 	max-width: 1140px;
 	margin: auto;
 	font-family: 'Work Sans';
 	font-size: 14px;
+}
+body .editionBar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: black;
+	height: 59px;
+	width: 100vw;
+	font-family: 'Work Sans';
+	gap: 10px;
 }
 
 header {
@@ -227,6 +238,7 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	font-weight: 700;
 }
 
 #introduction {
@@ -259,6 +271,14 @@ li:hover {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+}
+
+#editProject {
+    position: relative;
+    top: -51px;
+    right: -711px;
+    display: flex;
+    gap: 10px;
 }
 
 .gallery {

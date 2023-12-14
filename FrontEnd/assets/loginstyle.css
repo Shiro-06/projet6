@@ -11,7 +11,7 @@ main {
     justify-content: center;
 }
 
-h2 > form {
+h2 {
     margin-bottom: 40px;
 }
 
@@ -32,12 +32,13 @@ input {
     width: 380px;
     height: 50px;
     border: none;
+    margin: 20px 0;
 }
 
 form {
     color: #3D3D3D;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
 }
 

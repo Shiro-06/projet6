@@ -36,39 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Appeler fetchGallery au chargement de la page !!A METTRE DANS UNE FONCTION SANS EVENEMENT!!
-    fetchGallery('http://localhost:5678/api/works');
-
-    // Ajouter le bouton "Tous" en premier
-    const tousButton = document.createElement('button');
-    tousButton.textContent = 'Tous';
-    tousButton.addEventListener('click', function () {
-        setButtonSelected(tousButton);
-        displayGallery(works);
-    });
-    tousButton.classList.add('category-button'); // Ajouter la classe au bouton
-    buttonContainer.appendChild(tousButton);
-
-    // Créer les boutons avec des noms spécifiques !!MODIFIER POUR FAIRE UN SEUL APPEL FETCH DANS UNE FONCTION AVEC VERIFICATION DE LA REQUETE!! RAJOUTER CONDITION POUR AFFICHER OU NON
-    // LES BOUTONS SI ON EST LOG OU PAS
-    fetch('http://localhost:5678/api/categories')
-        .then(response => response.json())
-        .then(categories => {
-            categories.forEach(category => {
-                const button = document.createElement('button');
-                button.textContent = category.name;
-                button.addEventListener('click', function () {
-                    setButtonSelected(button);
-                    fetchCategories(category.id);
-                });
-                button.classList.add('category-button'); // Ajouter la classe au bouton
-                buttonContainer.appendChild(button);
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération des catégories:', error);
-        });
-
     // Fonction pour gérer le clic sur un bouton de catégorie
     function fetchCategories(categoryId) {
         // Filtrer les éléments par catégorie
@@ -78,19 +45,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Fonction pour récupérer les éléments depuis l'API
-    function fetchGallery(apiUrl) {
-        fetch(apiUrl)
+    function fetchData(apiUrl) {
+        return fetch(apiUrl)
             .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                }
                 return response.json();
+            })
+            .catch(error => {
+                console.error(`Erreur lors de la récupération des données depuis l'API: ${error.message}`);
+            });
+    }
+
+    // Fonction pour créer et ajouter des boutons de catégorie
+    function createCategoryButtons(categories) {
+        // Ajouter le bouton "Tous" en premier
+        const tousButton = document.createElement('button');
+        tousButton.textContent = 'Tous';
+        tousButton.addEventListener('click', function () {
+            setButtonSelected(tousButton);
+            displayGallery(works);
+        });
+        tousButton.classList.add('category-button'); // Ajouter la classe au bouton
+        buttonContainer.appendChild(tousButton);
+
+        // Créer les boutons avec des noms spécifiques
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.textContent = category.name;
+            button.addEventListener('click', function () {
+                setButtonSelected(button);
+                fetchCategories(category.id);
+            });
+            button.classList.add('category-button'); // Ajouter la classe au bouton
+            buttonContainer.appendChild(button);
+        });
+    }
+
+    // Fonction pour initialiser la page
+    function initializePage() {
+        fetchData('http://localhost:5678/api/categories')
+            .then(categories => {
+                createCategoryButtons(categories);
+            })
+            .then(() => {
+                // Appeler fetchGallery une fois que les boutons sont créés
+                return fetchData('http://localhost:5678/api/works');
             })
             .then(data => {
                 // Stocker les éléments dans la variable globale works
                 works = data;
                 // Utiliser les données récupérées pour afficher les éléments
                 displayGallery(works);
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération des éléments depuis l\'API:', error);
             });
     }
+
+    // Appeler la fonction pour initialiser la page
+    initializePage();
 });
