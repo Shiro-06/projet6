@@ -15,6 +15,7 @@
 	<meta name="description" content="">
 	<script src="JS/gallery.js" defer></script>
 	<script src="JS/login.js" defer></script>
+	<script src="JS/modale.js" defer></script>
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 
@@ -50,10 +51,21 @@
 			</section>
 			<section id="portfolio">
 				<h2 id="mesProjets">Mes Projets</h2>
-				<div id="editProject"><i class="fa-regular fa-pen-to-square fa-white"></i>modifier</div>
+				<a href="#modaleBtn"><button id="editProject"><i
+							class="fa-regular fa-pen-to-square fa-white"></i>modifier</button></a>
+				<div id="modaleContainer"></div>
 				<div id="buttonContainer"></div>
 				<div class="gallery"></div>
 			</section>
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<h2>Galerie photo</h2>
+					<div id="workImagesContainer"></div>
+					<button class="modaleBtn">Ajouter une photo</button>
+				</div>
+			</div>
+			</div>
 			<section id="contact">
 				<h2 id="monContact">Contact</h2>
 				<p>Vous avez un projet ? Discutons-en !</p>
