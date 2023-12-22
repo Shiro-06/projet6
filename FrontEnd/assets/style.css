@@ -421,3 +421,29 @@ footer nav ul {
 	cursor: pointer;
 }
 
+.modaleBtnContainer {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+	background-color: black;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+hr {
+	margin: 10px 80px;
+}

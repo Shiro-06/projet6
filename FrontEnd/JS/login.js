@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Utilisateur connecté, afficher editionBar
                 editionBar.style.display = 'flex';
                 // Afficher l'élément avec l'id #editProject s'il existe
+                if (buttonContainer) {
+                    buttonContainer.style.display = 'none'; // Cacher le conteneur de boutons
+                }
                 if (editProject) {
                     editProject.style.display = 'flex';
                 }
@@ -57,7 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 loginLink.textContent = 'logout';
                 loginLink.addEventListener('click', logout);
             } else {
-                // Utilisateur non connecté, masquer editionBar et l'élément avec l'id #editProject s'il existe
+                // Utilisateur non connecté, masquer editionBar et afficher buttonContainer
+                editionBar.style.display = 'none';
+                if (buttonContainer) {
+                    buttonContainer.style.display = 'flex'; // Afficher le conteneur de boutons
+                }
                 editionBar.style.display = 'none';
                 if (editProject) {
                     editProject.style.display = 'none';

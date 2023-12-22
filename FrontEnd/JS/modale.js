@@ -19,13 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(works => {
                 // Affiche les images des travaux dans la modale
                 works.forEach(work => {
-                    const imageUrl = work.imageUrl;
+                    const container = document.createElement('div');
+                    container.className = 'image-container';
+    
                     const imageElement = document.createElement('img');
-                    imageElement.src = imageUrl;
-                    workImagesContainer.appendChild(imageElement);
+                    imageElement.src = work.imageUrl;
+                    container.appendChild(imageElement);
+    
+                    const deleteIcon = document.createElement('i');
+                    deleteIcon.className = 'fa fa-solid fa-trash-can delete-icon';
+                    deleteIcon.onclick = function() { deleteImage(work.id, container); };
+                    container.appendChild(deleteIcon);
+    
+                    workImagesContainer.appendChild(container);
                 });
-
-                // Affiche la modale
+    
                 modal.style.display = 'block';
             })
             .catch(error => {
@@ -45,3 +53,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+function deleteImage(workId, containerElement) {
+    // Récupérer le token depuis le localStorage
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        alert("Vous n'êtes pas autorisé à effectuer cette action");
+        return;
+    }
+
+    fetch(`http://localhost:5678/api/works/${workId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if(response.ok) {
+            containerElement.remove();
+            alert("Travail supprimé avec succès");
+        } else {
+            response.text().then(text => alert(text));
+        }
+    })
+    .catch(error => console.error('Erreur:', error));
+}
