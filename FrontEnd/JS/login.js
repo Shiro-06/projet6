@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function logout() {
         localStorage.removeItem('authToken'); // Supprimer le token du stockage local
         updateUI(); // Mettre à jour le lien et la visibilité de editionBar après la déconnexion
-        // Autres actions de déconnexion si nécessaire
     }
 
     // Fonction pour rediriger vers la page de connexion

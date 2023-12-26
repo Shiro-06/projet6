@@ -64,11 +64,43 @@
 					<div id="workImagesContainer"></div>
 					<hr />
 					<div class="modaleBtnContainer">
-					<button class="modaleBtn">Ajouter une photo</button>
+						<button id="modaleBtn">Ajouter une photo</button>
+					</div>
 				</div>
 			</div>
 			</div>
+			<div id="newProjectModal" class="modal">
+				<div class="modal-content">
+					<span class="back-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+					<span class="close-new-modal close">&times;</span>
+					<h2>Ajout photo</h2>
+					<div class="formContainer">
+						<form id="newProjectForm">
+							<div class="image-upload-container" id="imagePreviewContainer">
+								<img src="assets\icons\icone_modale.svg" alt="icone image" id="iconModal">
+								<label for="imageUpload" class="image-upload-label">
+									+ Ajouter photo
+									<input type="file" id="imageUpload" name="imageUpload"
+										accept="image/png, image/jpeg" style="display: none;">
+								</label>
+								<p>jpg, png : 4mo max</p>
+							</div>
+
+							<label for="projectTitle">Titre</label>
+							<input type="text" id="projectTitle" name="projectTitle">
+
+							<label for="projectCategory">Catégorie</label>
+							<select id="projectCategory" name="projectCategory">
+							</select>
+					</div>
+					<hr />
+					<div class="modaleBtnContainer">
+						<button id="addPhotoBtn" type="submit">Valider</button>
+					</div>
+					</form>
+				</div>
 			</div>
+
 			<section id="contact">
 				<h2 id="monContact">Contact</h2>
 				<p>Vous avez un projet ? Discutons-en !</p>
