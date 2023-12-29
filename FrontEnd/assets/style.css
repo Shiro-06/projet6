@@ -421,6 +421,10 @@ footer nav ul {
 	cursor: pointer;
 }
 
+#modaleBtn:hover,
+.btnPrimary:hover {
+	background: #0E2F28;
+}
 .modaleBtnContainer {
 	display: flex;
 	justify-content: center;
@@ -531,4 +535,8 @@ input, select {
     width: 100%; 
     height: auto; 
     object-fit: contain;
+}
+
+input#imageUpload {
+	display: none;
 }

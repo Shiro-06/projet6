@@ -50,3 +50,6 @@ form {
     text-decoration: none;
 }
 
+.btnPrimary:hover {
+	background: #0E2F28;
+}

@@ -2,128 +2,127 @@
 <html lang="fr">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<meta name="description" content="">
-	<script src="JS/gallery.js" defer></script>
-	<script src="JS/login.js" defer></script>
-	<script src="JS/modale.js" defer></script>
-	<link rel="stylesheet" href="./assets/style.css">
+    <meta charset="UTF-8">
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <meta name="description" content="Sophie Bluel, votre architecte d'intérieur experte en design d'espace.">
+    <script src="JS/gallery.js" defer></script>
+    <script src="JS/login.js" defer></script>
+    <script src="JS/modale.js" defer></script>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
-	<div class="editionBar"><i class="fa-regular fa-pen-to-square fa-white"></i>Mode édition</div>
-	<main class="mainContainer">
-		<header>
-			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-			<nav>
-				<ul>
-					<li><a href="#mesProjets">projets</a></li>
-					<li><a href="#monContact">contact</a></li>
-					<li><a href="login.html" id="loginLink">login</a></li>
-					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<section id="introduction">
-				<figure>
-					<img src="./assets/images/sophie-bluel.png" alt="">
-				</figure>
-				<article>
-					<h2>Designer d'espace</h2>
-					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
-						livraison finale du chantier.</p>
-					<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-						couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-						chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-					<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-						décorateur(trice)</p>
-				</article>
-			</section>
-			<section id="portfolio">
-				<h2 id="mesProjets">Mes Projets</h2>
-				<a href="#modaleBtn"><button id="editProject"><i
-							class="fa-regular fa-pen-to-square fa-white"></i>modifier</button></a>
-				<div id="modaleContainer"></div>
-				<div id="buttonContainer"></div>
-				<div class="gallery"></div>
-			</section>
-			<div id="myModal" class="modal">
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<h2>Galerie photo</h2>
-					<div id="workImagesContainer"></div>
-					<hr />
-					<div class="modaleBtnContainer">
-						<button id="modaleBtn">Ajouter une photo</button>
-					</div>
-				</div>
-			</div>
-			</div>
-			<div id="newProjectModal" class="modal">
-				<div class="modal-content">
-					<span class="back-arrow"><i class="fa-solid fa-arrow-left"></i></span>
-					<span class="close-new-modal close">&times;</span>
-					<h2>Ajout photo</h2>
-					<div class="formContainer">
-						<form id="newProjectForm">
-							<div class="image-upload-container" id="imagePreviewContainer">
-								<img src="assets\icons\icone_modale.svg" alt="icone image" id="iconModal">
-								<label for="imageUpload" class="image-upload-label">
-									+ Ajouter photo
-									<input type="file" id="imageUpload" name="imageUpload"
-										accept="image/png, image/jpeg" style="display: none;">
-								</label>
-								<p>jpg, png : 4mo max</p>
-							</div>
+    <div class="editionBar"><i class="fa-regular fa-pen-to-square fa-white"></i>Mode édition</div>
+    <main class="mainContainer">
+        <header>
+            <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#mesProjets">projets</a></li>
+                    <li><a href="#monContact">contact</a></li>
+                    <li><a href="login.html" id="loginLink">login</a></li>
+                    <li><img src="./assets/icons/instagram.png" alt="Instagram de Sophie Bluel"></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="introduction">
+            <figure>
+                <img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel posant dans son bureau">
+            </figure>
+            <article>
+                <h2>Designer d'espace</h2>
+                <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
+                    livraison finale du chantier.</p>
+                <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+                    couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+                    chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+                <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+                    décorateur(trice)</p>
+            </article>
+        </section>
+        <section id="portfolio">
+            <h2 id="mesProjets">Mes Projets</h2>
+            <button id="editProject">
+                <i class="fa-regular fa-pen-to-square fa-white"></i>modifier
+            </button>
+            
+            <div id="modaleContainer"></div>
+            <div id="buttonContainer"></div>
+            <div class="gallery"></div>
+        </section>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Galerie photo</h2>
+                <div id="workImagesContainer"></div>
+                <hr>
+                <div class="modaleBtnContainer">
+                    <button id="modaleBtn">Ajouter une photo</button>
+                </div>
+            </div>
+        </div>
+        <div id="newProjectModal" class="modal">
+            <div class="modal-content">
+                <span class="back-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+                <span class="close-new-modal close">&times;</span>
+                <h2>Ajout photo</h2>
+                <div class="formContainer">
+                    <form id="newProjectForm">
+                        <div class="image-upload-container" id="imagePreviewContainer">
+                            <img src="assets/icons/icone_modale.svg" alt="icone image" id="iconModal">
+                            <label for="imageUpload" class="image-upload-label">
+                                + Ajouter photo
+                                <input type="file" id="imageUpload" name="imageUpload"
+                                    accept="image/png, image/jpeg">
+                            </label>
+                            <p>jpg, png : 4mo max</p>
+                        </div>
 
-							<label for="projectTitle">Titre</label>
-							<input type="text" id="projectTitle" name="projectTitle">
+                        <label for="projectTitle">Titre</label>
+                        <input type="text" id="projectTitle" name="projectTitle">
 
-							<label for="projectCategory">Catégorie</label>
-							<select id="projectCategory" name="projectCategory">
-							</select>
-					</div>
-					<hr />
-					<div class="modaleBtnContainer">
-						<button id="addPhotoBtn" type="submit">Valider</button>
-					</div>
-					</form>
-				</div>
-			</div>
+                        <label for="projectCategory">Catégorie</label>
+                        <select id="projectCategory" name="projectCategory">
+                        </select>
 
-			<section id="contact">
-				<h2 id="monContact">Contact</h2>
-				<p>Vous avez un projet ? Discutons-en !</p>
-				<form action="#" method="post">
-					<label for="name">Nom</label>
-					<input type="text" name="name" id="name">
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email">
-					<label for="message">Message</label>
-					<textarea name="message" id="message" cols="30" rows="10"></textarea>
-					<input type="submit" value="Envoyer">
-				</form>
-			</section>
-		</main>
+                        <hr>
+                        <div class="modaleBtnContainer">
+                            <button id="addPhotoBtn" type="submit">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-		<footer>
-			<nav>
-				<ul>
-					<li>Mentions Légales</li>
-				</ul>
-			</nav>
-		</footer>
-	</main>
+        <section id="contact">
+            <h2 id="monContact">Contact</h2>
+            <p>Vous avez un projet ? Discutons-en !</p>
+            <form action="#" method="post">
+                <label for="name">Nom</label>
+                <input type="text" name="name" id="name">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <input class="btnPrimary" type="submit" value="Envoyer">
+            </form>
+        </section>
+        <footer>
+            <nav>
+                <ul>
+                    <li>Mentions Légales</li>
+                </ul>
+            </nav>
+        </footer>
+    </main>
 </body>
 
 </html>

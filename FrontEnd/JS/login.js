@@ -10,39 +10,40 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mettre à jour le lien et la visibilité de editionBar en fonction de l'état de connexion
     updateUI();
 
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-        // Envoyer les données du formulaire au serveur
-        fetch('http://localhost:5678/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password,
-            }),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur dans l’identifiant ou le mot de passe');
-                }
-                return response.json();
+            // Envoyer les données du formulaire au serveur
+            fetch('http://localhost:5678/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
             })
-            .then(data => {
-                localStorage.setItem('authToken', data.token);
-                updateUI(); // Mettre à jour le lien et la visibilité de editionBar après la connexion
-                window.location.href = 'index.html';
-            })
-            .catch(error => {
-                console.error('Erreur de connexion:', error.message);
-                alert(error.message);
-            });
-    });
-
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur dans l’identifiant ou le mot de passe');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    localStorage.setItem('authToken', data.token);
+                    updateUI(); // Mettre à jour le lien et la visibilité de editionBar après la connexion
+                    window.location.href = 'index.html';
+                })
+                .catch(error => {
+                    console.error('Erreur de connexion:', error.message);
+                    alert(error.message);
+                });
+        });
+    }
     // Fonction pour mettre à jour le lien et la visibilité de editionBar en fonction de l'état de connexion
     function updateUI() {
         if (editionBar) {
@@ -73,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 loginLink.textContent = 'login';
                 loginLink.addEventListener('click', redirectToLogin);
             }
-        } else {
-            console.error('Erreur: editionBar est null.');
         }
     }
 

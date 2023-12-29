@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return localStorage.getItem('authToken');
     }
 
+    document.getElementById('editProject').addEventListener('click', function() {
+        let modal = document.getElementById('myModal');
+        modal.style.display = "block";
+    });
+    
     // Fonction pour charger les catégories
     function loadCategories() {
         fetch('http://localhost:5678/api/categories')
@@ -89,13 +94,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Erreur:', error));
     });
 
-    workImagesContainer.addEventListener('click', function(event) {
+    workImagesContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-icon')) {
             const workId = event.target.getAttribute('data-work-id');
             deleteImage(workId, event.target.parentElement);
         }
     });
-    
+
 
     // Prévisualisation de l'image uploadée
     fileInput.addEventListener('change', function (event) {
@@ -175,28 +180,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Validation du formulaire
- // Désactivez le bouton par défaut
- addPhotoBtn.disabled = true;
- addPhotoBtn.classList.remove('btnSelected');
+    // Désactivez le bouton par défaut
+    addPhotoBtn.disabled = true;
+    addPhotoBtn.classList.remove('btnSelected');
 
- const checkConditionsAndApplyClass = () => {
-     const isImageSelected = fileInput.files && fileInput.files.length > 0;
-     const isTitleEntered = titleInput.value.trim() !== '';
-     const isCategorySelected = categorySelect.value !== '';
+    const checkConditionsAndApplyClass = () => {
+        const isImageSelected = fileInput.files && fileInput.files.length > 0;
+        const isTitleEntered = titleInput.value.trim() !== '';
+        const isCategorySelected = categorySelect.value !== '';
 
-     const allConditionsMet = isImageSelected && isTitleEntered && isCategorySelected;
+        const allConditionsMet = isImageSelected && isTitleEntered && isCategorySelected;
 
-     // Activez ou désactivez le bouton en fonction des conditions
-     addPhotoBtn.disabled = !allConditionsMet;
+        // Activez ou désactivez le bouton en fonction des conditions
+        addPhotoBtn.disabled = !allConditionsMet;
 
-     // Ajoutez ou retirez la classe btnSelected en fonction des conditions
-     if (allConditionsMet) {
-         addPhotoBtn.classList.add('btnSelected');
-     } else {
-         addPhotoBtn.classList.remove('btnSelected');
-     }
- };
- 
+        // Ajoutez ou retirez la classe btnSelected en fonction des conditions
+        if (allConditionsMet) {
+            addPhotoBtn.classList.add('btnSelected');
+        } else {
+            addPhotoBtn.classList.remove('btnSelected');
+        }
+    };
+
     fileInput.addEventListener('change', checkConditionsAndApplyClass);
     titleInput.addEventListener('input', checkConditionsAndApplyClass);
     categorySelect.addEventListener('change', checkConditionsAndApplyClass);
