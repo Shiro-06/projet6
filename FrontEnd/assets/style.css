@@ -467,8 +467,9 @@ hr {
 	cursor: pointer;
 	width: 230px;
 }
-#addPhotoBtn:hover {
-	background-color: #1D6154;
+
+#addPhotoBtn.btnSelected {
+	background: #1D6154;
 }
 
 #newProjectForm {
