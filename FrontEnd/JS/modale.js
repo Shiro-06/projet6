@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Initialisation des éléments de l'interface utilisateur et des gestionnaires d'événements après le chargement du DOM
+
     // Sélection des éléments du DOM
     const modal = document.getElementById('myModal');
     const newProjectModal = document.getElementById('newProjectModal');
@@ -14,16 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const imagePreviewContainer = document.getElementById('imagePreviewContainer');
     const backArrow = document.querySelector('.back-arrow');
 
+
     // Fonction pour récupérer le token d'authentification
     function getAuthToken() {
         return localStorage.getItem('authToken');
     }
 
-    document.getElementById('editProject').addEventListener('click', function() {
+    document.getElementById('editProject').addEventListener('click', function () {
         let modal = document.getElementById('myModal');
         modal.style.display = "block";
     });
-    
+
     // Fonction pour charger les catégories
     function loadCategories() {
         fetch('http://localhost:5678/api/categories')
@@ -54,11 +57,17 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modaleBtn').addEventListener('click', function () {
         newProjectModal.style.display = 'block';
         loadCategories();
+        modal.classList.add('modal-open');
+    });
+    // Gestion de l'ouverture de la modale de projet
+    document.getElementById('editProject').addEventListener('click', function () {
+        modal.classList.add('modal-open');
     });
 
     // Gestion de la fermeture des modales
     function closeModal(modalElement) {
         modalElement.style.display = 'none';
+        document.body.classList.remove('modal-open');
 
         // Vérifiez si la modale fermée est newProjectModal
         if (modalElement === newProjectModal) {
@@ -67,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Gestionnaire pour fermer les modales
     closeButton.addEventListener('click', () => closeModal(modal));
     closeNewModalButton.addEventListener('click', () => closeModal(newProjectModal));
     window.addEventListener('click', function (event) {
@@ -74,12 +84,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target === newProjectModal) closeModal(newProjectModal);
     });
 
-    // Affichage des images de projet
+    // Affichage des images de projet dans la modale d'édition
     editProjectButton.addEventListener('click', function () {
+        // Réinitialisation du conteneur d'images
         workImagesContainer.innerHTML = '';
         fetch('http://localhost:5678/api/works')
             .then(response => response.json())
             .then(works => {
+                // Affichage de chaque projet dans le conteneur
                 works.forEach(work => {
                     const container = document.createElement('div');
                     container.className = 'image-container';
@@ -94,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Erreur:', error));
     });
 
+    // Gestionnaire d'événements pour supprimer une image
     workImagesContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-icon')) {
             const workId = event.target.getAttribute('data-work-id');
@@ -114,9 +127,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Gestionnaire d'événements pour la soumission du formulaire de nouveau projet
     newProjectForm.addEventListener('submit', function (event) {
         event.preventDefault();
-
+        // Validation des données saisies par l'utilisateur
         const selectedPic = fileInput.files[0];
         const selectedDesc = titleInput.value.trim();
         const selectedCat = categorySelect.value;
@@ -131,14 +145,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const validImageTypes = ['image/jpeg', 'image/png'];
-        if (!validImageTypes.includes(selectedPic.type)) {
-            alert("Le fichier doit être au format JPG ou PNG.");
+        if (selectedPic.size > 4 * 1024 * 1024) {
+            alert("La taille du fichier ne doit pas dépasser 4 Mo.");
             return;
         }
 
-        if (selectedPic.size > 4 * 1024 * 1024) {
-            alert("La taille du fichier ne doit pas dépasser 4 Mo.");
+        const validImageTypes = ['image/jpg', 'image/png'];
+        if (!validImageTypes.includes(selectedPic.type)) {
+            alert("Le fichier doit être au format JPG ou PNG.");
             return;
         }
 
@@ -147,12 +161,8 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append("title", selectedDesc);
         formData.append("category", selectedCat);
 
-        // Débogage : Afficher le contenu de formData
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
 
-        // Envoi de la requête
+        // Envoi de la requête POST avec les données du formulaire
         fetch('http://localhost:5678/api/works', {
             method: 'POST',
             body: formData,
@@ -166,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 closeModal(newProjectModal);
+                window.location.href = 'index.html';
             })
             .catch(error => {
                 console.error('Erreur:', error);
@@ -179,11 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Validation du formulaire
     // Désactivez le bouton par défaut
     addPhotoBtn.disabled = true;
     addPhotoBtn.classList.remove('btnSelected');
 
+    // Validation du formulaire
     const checkConditionsAndApplyClass = () => {
         const isImageSelected = fileInput.files && fileInput.files.length > 0;
         const isTitleEntered = titleInput.value.trim() !== '';
@@ -202,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Vérification du formulaire à chaque modification
     fileInput.addEventListener('change', checkConditionsAndApplyClass);
     titleInput.addEventListener('input', checkConditionsAndApplyClass);
     categorySelect.addEventListener('change', checkConditionsAndApplyClass);
@@ -217,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Requête DELETE pour supprimer l'image
         fetch(`http://localhost:5678/api/works/${workId}`, {
             method: 'DELETE',
             headers: {
@@ -226,6 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => {
                 if (!response.ok) return response.text().then(text => Promise.reject(text));
                 containerElement.remove();
+                window.location.href = 'index.html';
                 alert("Travail supprimé avec succès");
             })
             .catch(error => {
@@ -233,4 +247,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(error);
             });
     }
+
 });

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         galleryContainer.innerHTML = ''; // Effacer le contenu précédent
 
         elements.forEach(element => {
+            // Parcourt chaque élément à afficher dans la galerie
             const figure = document.createElement('figure');
             const img = document.createElement('img');
             const figcaption = document.createElement('figcaption');
@@ -29,10 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
             img.src = element.imageUrl;
             img.alt = element.title;
             figcaption.textContent = element.title;
+            // Définit les attributs et le contenu des éléments
 
             figure.appendChild(img);
             figure.appendChild(figcaption);
             galleryContainer.appendChild(figure);
+            // Ajoute les images et les légendes à la galerie
         });
     }
 
